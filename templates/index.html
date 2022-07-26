@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Start Game!</title>
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js" integrity="sha512-9mpsATI0KClwt+xVZfbcf2lJ8IFBAwsubJ6mI3rtULwyM3fBmQFzj0It4tGqxLOGQwGfJdk/G+fANnxfq9/cew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}" defer></script>
+	<script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+	
+</head>
+
+<body>
+	<h1>Game of PIG</h1>
+	<p>
+		There are two players. The player whose turn it is rolls the dice.
+		The total of the roll is added to the current player's score, unless
+		either die comes up as a “one”. If this happens, this player's turn
+		is over, and it is the other player’s turn. After each roll, the
+		current player can either roll again, (assuming a “one” was not
+		rolled) or if the current player feels that luck is running thin,
+		they can pass to the other player. The first player to get 30 points
+		or higher wins.
+	</p>
+	<p>
+		Oh, and if you roll two “ones” (snake eyes), your current score gets
+		zeroed out. So don’t do that.
+	</p>
+
+	<div id="chatWrapper">
+		<div>
+			<input id="chatName" type="text" name="name" value = "" placeholder="請輸入你的玩家名稱!">
+			<button id="startChatBtn" type="button" name="button">開始聊天!</button>
+		</div>
+		
+		<section class="msger">
+			<header class="msger-header">
+				<div class="msger-header-title">
+					<i class="fas fa-comment-alt"></i> 開心聊天室
+				</div>
+				<div class="msger-header-options">
+					<span><i class="fas fa-cog"></i></span>
+				</div>
+			</header>
+			<!--聊天 block-->
+			<div class="msger-chat">
+
+			</div>
+			<!--聊天 block-->
+
+			<div class="msger-inputarea">
+				<input type="text" id="msg" class="msger-input" placeholder="說些什麼吧～">
+				<button type="button" id="send" class="msger-send-btn">發送訊息</button>
+			</div>
+		</section>
+
+	</div>
+
+	<div id="gamecontrol">
+		<div class="startWrapper">
+			<div>
+				<h2>Start a Game</h2>
+				<input type="text" id="diceNumber" placeholder="請輸入骰子數量">
+				<input type="text" id="winPoint" placeholder="請輸入獲勝點數">
+				<button id="getReady">準備開始!</button>
+			</div>
+			<div id="playerCount">
+				<span>目前人數: <span>0</span></span>
+				<span>準備人數: <span>0</span></span>
+			</div>
+		</div>
+
+		<section>
+			<h3>等待清單</h3>
+		</section>
+		
+		<button id="startgame">
+			隨機挑選初始玩家，並開始進行遊戲。
+		</button>
+	</div>
+
+	<div id="game"></div>
+	<div id="actions"></div>
+	<div id="score"></div>
+
+</body>
+</html>
